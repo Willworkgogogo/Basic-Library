@@ -463,26 +463,28 @@ var easyDo = {
         return _newPar;
     },
     //cookie
-    //设置cookie
-    setCookie: function (name, value, iDay) {
-        var oDate = new Date();
-        oDate.setDate(oDate.getDate() + iDay);
-        document.cookie = name + '=' + value + ';expires=' + oDate;
-    },
-    //获取cookie
-    getCookie: function (name) {
-        var arr = document.cookie.split('; ');
-        for (var i = 0; i < arr.length; i++) {
-            var arr2 = arr[i].split('=');
-            if (arr2[0] == name) {
-                return arr2[1];
+    Cookie: {
+        //设置cookie
+        setCookie: function (name, value, iDay) {
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + iDay);
+            document.cookie = name + '=' + value + ';expires=' + oDate;
+        },
+        //获取cookie
+        getCookie: function (name) {
+            var arr = document.cookie.split('; ');
+            for (var i = 0; i < arr.length; i++) {
+                var arr2 = arr[i].split('=');
+                if (arr2[0] == name) {
+                    return arr2[1];
+                }
             }
+            return '';
+        },
+        //删除cookie
+        removeCookie: function (name) {
+            window.easyDo.Cookie.setCookie(name, 1, -1);
         }
-        return '';
-    },
-    //删除cookie
-    removeCookie: function (name) {
-        this.setCookie(name, 1, -1);
     },
     /*DOM*/
     //检测对象是否有哪个类名
