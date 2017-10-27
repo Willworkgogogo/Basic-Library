@@ -1,5 +1,5 @@
 /*1.0.1*/
-var easyDo = {
+var WILL_BASE_LAB = {
     //去除空格  type 1-所有空格  2-前后空格  3-前空格 4-后空格
     trim: function (str, type) {
         switch (type) {
@@ -240,11 +240,11 @@ var easyDo = {
         return arr[Math.floor(Math.random() * arr.length)];
     },
 
-//回数组（字符串）一个元素出现的次数
-//getEleCount('asd56+asdasdwqe','a')
-//3
-//getEleCount([1,2,3,4,5,66,77,22,55,22],22)
-//2
+    //回数组（字符串）一个元素出现的次数
+    //getEleCount('asd56+asdasdwqe','a')
+    //3
+    //getEleCount([1,2,3,4,5,66,77,22,55,22],22)
+    //2
     getEleCount: function (obj, ele) {
         var num = 0;
         for (var i = 0, len = obj.length; i < len; i++) {
@@ -551,6 +551,29 @@ var easyDo = {
     },
     hide: function (obj) {
         obj.style.display = "none";
+    },
+    /* 
+    * preventDefault禁止默认事件
+    */
+    preventDefault: function(e) {
+        e = e || window.e;
+        if (e.preventDefault) e.preventDefault;
+        e.returnValue = false;
+    },
+    /* 
+    * preventKeyDown 阻止键盘使用
+    * @param keyArr 数组，接收指定keyCode，如禁用上下左右[37, 38, 39, 40]
+    */
+    preventKeyDown: function (e, keyArr) {
+       if (arguments.length == 1) {
+           this.preventDefault(e);
+           return
+       } 
+       for (var i = keyArr.length; i--;) {
+           if (e.keyCode == keys[i]) {
+                this.preventDefault(e);
+                return;
+           }
+       } 
     }
-
 }
